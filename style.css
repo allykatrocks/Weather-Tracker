@@ -1,0 +1,17 @@
+body {
+    font-family: 'Orelega One', cursive;
+}
+
+header {
+    background-color: blue;
+    text-align: center;
+    color: cornsilk;
+}
+
+form {
+    margin-left: 10px;
+}
+
+button {
+    background-color: lightblue;
+}
