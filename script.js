@@ -23,7 +23,9 @@ accessCityForm.addEventListener("submit", function(event) {
     })
 })
 
-
+function displayData() {
+    
+}
 
 
 
