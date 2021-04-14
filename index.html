@@ -19,11 +19,23 @@
         <h1>Weather Dashboard</h1>
     </header>
     <form id="search-cities">
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
         <h2>Search for a City:</h2>
         <input type="text" id="city">
         <button id="city-search"><i class="fas fa-search-location"></i></button>
+              </div>
     </form>
-    <div id="today-date"></div>
+    <div class="col-lg-9" id="weather-data">
+        <div class="card-body">
+            <h2 class="card-title">City Name, Date, Icon</h2>
+            <p class="card-text">Temperature</p>
+            <p class="card-text">Humidity</p>
+            <p class="card-text">Wind Speed</p>
+            <p class="card-text">UVI</p>
+        </div>
+    </div>
 
     
 
