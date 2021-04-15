@@ -20,7 +20,7 @@ accessCityForm.addEventListener("submit", function(event) {
             fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=" + key).then(function(outcome) {
                 return outcome.json().then(function(weatherData) {
                     console.log(weatherData);
-                    var = weatherIcon = weatherData.daily[0].weather[0].icon;
+                    var weatherIcon = weatherData.daily[0].weather[0].icon;
                    tempEl.append(weatherData.daily[0].temp.day + " °F");
                    humidEl.append(weatherData.daily[0].humidity + "%");
                    windEl.append(weatherData.daily[0].wind_speed + " MPH");
@@ -33,7 +33,10 @@ accessCityForm.addEventListener("submit", function(event) {
                     uviEl.style.backgroundColor = "red";
                    };
                     var date = moment.unix(weatherData.current.dt).format("MM/DD/YYYY");
-                    dateEl.textContent = city + " " + date + " " + weatherIcon;
+                    dateEl.textContent = city + " " + date;
+                    var iconImg = $("<img>");
+                    iconImg.attr("src", "https://openweathermap.org/img/w/" + weatherIcon + ".png");
+                    iconImg.appendTo(dateEl);
                 })
             });
 
