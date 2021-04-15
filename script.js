@@ -27,10 +27,13 @@ accessCityForm.addEventListener("submit", function(event) {
                    uviEl.append(weatherData.current.uvi);
                    if(weatherData.current.uvi < 3) {
                        uviEl.style.backgroundColor = "green";
+                       uviEl.style.color = "white";
                    } else if(weatherData.current.uvi < 7) {
                     uviEl.style.backgroundColor = "yellow";
+                    uviEl.style.color = "white";
                    } else {
                     uviEl.style.backgroundColor = "red";
+                    uviEl.style.color = "white";
                    };
                     var date = moment.unix(weatherData.current.dt).format("MM/DD/YYYY");
                     dateEl.textContent = city + " " + date;
