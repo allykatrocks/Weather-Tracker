@@ -6,7 +6,7 @@ var tempEl = document.getElementById("temp");
 var humidEl = document.getElementById("humid");
 var windEl = document.getElementById("wind");
 var uviEl = document.getElementById("uvi");
-
+var futureEl = document.getElementById("future-cast");
 
 
 accessCityForm.addEventListener("submit", function(event) {
@@ -20,14 +20,14 @@ accessCityForm.addEventListener("submit", function(event) {
             fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=" + key).then(function(outcome) {
                 return outcome.json().then(function(weatherData) {
                     console.log(weatherData);
-                    var weatherIcon = weatherData.daily[0].weather[0].icon;
-                   tempEl.append(weatherData.daily[0].temp.day + " °F");
-                   humidEl.append(weatherData.daily[0].humidity + "%");
-                   windEl.append(weatherData.daily[0].wind_speed + " MPH");
-                   uviEl.append(weatherData.daily[0].uvi);
-                   if(weatherData.daily[0].uvi < 3) {
+                    var weatherIcon = weatherData.current.weather[0].icon;
+                   tempEl.append(weatherData.current.temp + " °F");
+                   humidEl.append(weatherData.current.humidity + "%");
+                   windEl.append(weatherData.current.wind_speed + " MPH");
+                   uviEl.append(weatherData.current.uvi);
+                   if(weatherData.current.uvi < 3) {
                        uviEl.style.backgroundColor = "green";
-                   } else if(weatherData.daily[0].uvi < 7) {
+                   } else if(weatherData.current.uvi < 7) {
                     uviEl.style.backgroundColor = "yellow";
                    } else {
                     uviEl.style.backgroundColor = "red";
@@ -37,6 +37,26 @@ accessCityForm.addEventListener("submit", function(event) {
                     var iconImg = $("<img>");
                     iconImg.attr("src", "https://openweathermap.org/img/w/" + weatherIcon + ".png");
                     iconImg.appendTo(dateEl);
+                    document.getElementById("future-header").textContent = "5 Day Forecast:"
+                    for (var i = 0; i < 5; i++) {
+                         var col = document.createElement("div");
+                         col.setAttribute("class", "col");
+                         var cards = document.createElement("div");
+                         cards.setAttribute("class", "card");
+                         var cardBody = document.createElement("div");
+                         cardBody.setAttribute("class", "card-body");
+                         console.log(cardBody);
+                         var h4 = document.createElement("h4").textContent = moment.unix(weatherData.daily[i].dt).format("MM/DD/YYYY");
+                         var newIcon = weatherData.daily[i].weather[0].icon;
+                         var icon = document.createElement("img");
+                         icon.setAttribute("src", "https://openweathermap.org/img/w/" + newIcon + ".png");
+                         var newTemp = document.createElement("p").textContent = "Temp: " + weatherData.daily[i].temp.day + "°F\n";
+                         var newHumid = document.createElement("p").textContent = "Humid: " + weatherData.daily[i].humidity + "%";
+                         cardBody.append(h4, icon, newTemp, newHumid);
+                         cards.append(cardBody);
+                         col.append(cards);
+                         futureEl.append(col);
+                    }
                 })
             });
 
@@ -44,9 +64,10 @@ accessCityForm.addEventListener("submit", function(event) {
     })
 })
 
-//get city and icon to appear
-//fix text content of appends
-//clear past results when new search is initiated
+// clean up CSS
+// clear past results when new search is initiated
+// clear text upon start up
+// accessible search history
 
 
 
