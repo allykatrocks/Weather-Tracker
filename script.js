@@ -30,7 +30,7 @@ accessCityForm.addEventListener("submit", function(event) {
                        uviEl.style.color = "white";
                    } else if(weatherData.current.uvi < 7) {
                     uviEl.style.backgroundColor = "yellow";
-                    uviEl.style.color = "white";
+                    uviEl.style.color = "black";
                    } else {
                     uviEl.style.backgroundColor = "red";
                     uviEl.style.color = "white";
@@ -67,7 +67,7 @@ accessCityForm.addEventListener("submit", function(event) {
     })
 })
 
-// clean up CSS
+
 // clear past results when new search is initiated
 // clear text upon start up
 // accessible search history
