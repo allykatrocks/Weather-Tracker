@@ -12,7 +12,7 @@ var getDataBack = document.getElementById("weather-data");
 
 accessCityForm.addEventListener("submit", function(event) {
     event.preventDefault();
-   // getDataBack.classList.remove("card");
+    getDataBack.classList.remove("weather");
     var city = document.getElementById("city").value;
     var inputCityValue = inputCity.value;
     fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + inputCityValue + "&limit=1&appid=" + key).then(function(response) {
