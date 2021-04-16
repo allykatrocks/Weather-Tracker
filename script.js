@@ -72,7 +72,6 @@ accessCityForm.addEventListener("submit", function(event) {
 
 
 
-// old text shows briefly before weather data
 // accessible search history
 
 

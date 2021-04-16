@@ -12,6 +12,14 @@ button {
     background-color: lightblue;
 }
 
+.row {
+    margin-left: 5px;
+}
+
+.search {
+    margin-top: 50px;
+}
+
 .weather {
     display: none;
 }
