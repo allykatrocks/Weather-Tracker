@@ -14,6 +14,7 @@ var containerEl = document.getElementById("container");
 
 accessCityForm.addEventListener("submit", function(event) {
     event.preventDefault();
+    // saveSearch();
     getDataBack.classList.remove("weather");
     getDataBack.style.display = "block";
     var city = document.getElementById("city").value;
