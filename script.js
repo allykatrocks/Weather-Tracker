@@ -7,12 +7,13 @@ var humidEl = document.getElementById("humid");
 var windEl = document.getElementById("wind");
 var uviEl = document.getElementById("uvi");
 var futureEl = document.getElementById("future-cast");
-var getDataBack = document.getElementById("weather-data");
+var getDataBack = document.getElementById("weather-card");
 
 
 accessCityForm.addEventListener("submit", function(event) {
     event.preventDefault();
     getDataBack.classList.remove("weather");
+    getDataBack.style.display = "block";
     var city = document.getElementById("city").value;
     var inputCityValue = inputCity.value;
     fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + inputCityValue + "&limit=1&appid=" + key).then(function(response) {
@@ -71,7 +72,7 @@ accessCityForm.addEventListener("submit", function(event) {
 
 
 
-// clear text upon start up
+// old text shows briefly before weather data
 // accessible search history
 
 
