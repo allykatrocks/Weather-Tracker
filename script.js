@@ -7,10 +7,12 @@ var humidEl = document.getElementById("humid");
 var windEl = document.getElementById("wind");
 var uviEl = document.getElementById("uvi");
 var futureEl = document.getElementById("future-cast");
+var getDataBack = document.getElementById("weather-data");
 
 
 accessCityForm.addEventListener("submit", function(event) {
     event.preventDefault();
+   // getDataBack.classList.remove("card");
     var city = document.getElementById("city").value;
     var inputCityValue = inputCity.value;
     fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + inputCityValue + "&limit=1&appid=" + key).then(function(response) {
@@ -21,10 +23,10 @@ accessCityForm.addEventListener("submit", function(event) {
                 return outcome.json().then(function(weatherData) {
                     console.log(weatherData);
                     var weatherIcon = weatherData.current.weather[0].icon;
-                   tempEl.append(weatherData.current.temp + " °F");
-                   humidEl.append(weatherData.current.humidity + "%");
-                   windEl.append(weatherData.current.wind_speed + " MPH");
-                   uviEl.append(weatherData.current.uvi);
+                   tempEl.textContent = "Temperature: " + weatherData.current.temp + " °F";
+                   humidEl.textContent = "Humidity: " + weatherData.current.humidity + "%";
+                   windEl.textContent = "Wind Speed: " + weatherData.current.wind_speed + " MPH";
+                   uviEl.textContent = "UVI: " + weatherData.current.uvi;
                    if(weatherData.current.uvi < 3) {
                        uviEl.style.backgroundColor = "green";
                        uviEl.style.color = "white";
@@ -41,6 +43,7 @@ accessCityForm.addEventListener("submit", function(event) {
                     iconImg.attr("src", "https://openweathermap.org/img/w/" + weatherIcon + ".png");
                     iconImg.appendTo(dateEl);
                     document.getElementById("future-header").textContent = "5 Day Forecast:"
+                    futureEl.innerHTML = "";
                     for (var i = 0; i < 5; i++) {
                          var col = document.createElement("div");
                          col.setAttribute("class", "col");
@@ -48,7 +51,6 @@ accessCityForm.addEventListener("submit", function(event) {
                          cards.setAttribute("class", "card");
                          var cardBody = document.createElement("div");
                          cardBody.setAttribute("class", "card-body");
-                         console.log(cardBody);
                          var h4 = document.createElement("h4").textContent = moment.unix(weatherData.daily[i].dt).format("MM/DD/YYYY");
                          var newIcon = weatherData.daily[i].weather[0].icon;
                          var icon = document.createElement("img");
@@ -68,7 +70,7 @@ accessCityForm.addEventListener("submit", function(event) {
 })
 
 
-// clear past results when new search is initiated
+
 // clear text upon start up
 // accessible search history
 
