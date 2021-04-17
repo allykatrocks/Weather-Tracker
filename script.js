@@ -12,9 +12,9 @@ var searchHistory = JSON.parse(localStorage.getItem("searchHistoryList")) || [];
 var containerEl = document.getElementById("container");
 
 
+
 accessCityForm.addEventListener("submit", function(event) {
     event.preventDefault();
-    // saveSearch();
     getDataBack.classList.remove("weather");
     getDataBack.style.display = "block";
     var city = document.getElementById("city").value;
@@ -78,11 +78,11 @@ function saveSearch(city) {
     localStorage.setItem("searchHistoryList", JSON.stringify(searchHistory));
     for (var i = 0; i < searchHistory.length; i++) {
         var btn = document.createElement("button");
-        btn.textContent = searchHistory[i]
-        containerEl.append(btn)
+        btn.textContent = searchHistory[i];
+        containerEl.append(btn);
     }
 }
-
+saveSearch();
 // accessible search history
 
 
